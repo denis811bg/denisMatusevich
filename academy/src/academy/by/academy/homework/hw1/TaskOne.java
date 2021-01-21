@@ -18,6 +18,7 @@ public class TaskOne {
 				System.out.println("Вы ввели некорректные данные. "
 						+ "Поле сумма покупки или возраст должны быть положительными.");
 			} else {
+				scanner.close();
 				break;
 			}
 		}
