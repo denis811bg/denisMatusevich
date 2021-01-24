@@ -24,10 +24,11 @@ public class Application {
 		System.out.println("Name: " + noNameCat.nickname);
 		System.out.println(noNameCat.isHomeAnimal());
 
-		// noNameCat.nickname = "Benito";
-		noNameCat.setInitials(noNameCat.nickname = "Benito");
-		noNameCat.setHomeAnimal(noNameCat.nickname = "Benito");
+		noNameCat.nickname = "Benito";
+		noNameCat.setInitials(noNameCat.nickname);
+		noNameCat.setHomeAnimal(noNameCat.nickname);
 		System.out.println("Name: " + noNameCat.nickname);
+		System.out.println("Initials: " + noNameCat.getInitials());
 		System.out.println(noNameCat.isHomeAnimal());
 
 	}
