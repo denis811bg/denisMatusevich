@@ -23,5 +23,12 @@ public class Application {
 		System.out.println(adolf.isHomeAnimal());
 		System.out.println("Name: " + noNameCat.nickname);
 		System.out.println(noNameCat.isHomeAnimal());
+
+		// noNameCat.nickname = "Benito";
+		noNameCat.setInitials(noNameCat.nickname = "Benito");
+		noNameCat.setHomeAnimal(noNameCat.nickname = "Benito");
+		System.out.println("Name: " + noNameCat.nickname);
+		System.out.println(noNameCat.isHomeAnimal());
+
 	}
 }

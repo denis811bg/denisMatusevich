@@ -30,16 +30,20 @@ public class Cat {
 		return this.initials;
 	}
 
-	public void setInitials(char initials) {
-		this.initials = initials;
+	public void setInitials(String nickname) {
+		this.initials = nickname.charAt(0);
 	}
 
 	public boolean isHomeAnimal() {
 		return this.isHomeAnimal;
 	}
 
-	public void setHomeAnimal(boolean isHomeAnimal) {
-		this.isHomeAnimal = isHomeAnimal;
+	public void setHomeAnimal(String nickname) {
+		if (nickname == null) {
+			this.isHomeAnimal = false;
+		} else {
+			this.isHomeAnimal = true;
+		}
 	}
 
 	public void grow() {
