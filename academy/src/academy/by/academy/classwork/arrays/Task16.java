@@ -1,6 +1,5 @@
 package academy.by.academy.classwork.arrays;
 
-import java.util.Arrays;
 import java.util.Random;
 
 public class Task16 {

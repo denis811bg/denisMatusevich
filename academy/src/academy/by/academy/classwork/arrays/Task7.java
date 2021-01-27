@@ -5,8 +5,6 @@ import java.util.Arrays;
 public class Task7 {
 	public static void main(String[] args) {
 		int[] array = new int[20];
-		int result = 1;
-
 		// initialising array
 		array[0] = 1;
 		array[1] = 1;
