@@ -5,8 +5,9 @@ import java.util.Scanner;
 public class Task2 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		int n = 0;
 
+		// initialising n
+		int n = 0;
 		System.out.print("Insert n (n > 0) = ");
 		while (true) {
 			n = scanner.nextInt();
@@ -18,6 +19,7 @@ public class Task2 {
 			}
 		}
 
+		// initialising array strings and search min word
 		System.out.println("Insert n word");
 		String[] strArray = new String[n];
 		int minLength = Integer.MAX_VALUE;
@@ -29,8 +31,7 @@ public class Task2 {
 				minWord = strArray[i];
 			}
 		}
-
-		scanner.close();
 		System.out.println("Result: " + minWord);
+		scanner.close();
 	}
 }

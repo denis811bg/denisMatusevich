@@ -10,23 +10,24 @@ public class Task1 {
 		String strOne = scanner.nextLine();
 		System.out.print("Insert second string: ");
 		String strTwo = scanner.nextLine();
-		scanner.close();
 
-		System.out.println("Result: " + stringToString(strOne, strTwo));
+		System.out.println("Result: " + permutStrings(strOne, strTwo));
+		scanner.close();
 	}
 
-	public static boolean stringToString(String strOne, String strTwo) {
+	// method compare two string
+	public static boolean permutStrings(String strOne, String strTwo) {
 		boolean result = true;
 
 		int[] letters = new int[256];
 		if (strOne.length() == strTwo.length()) {
 
-			// quantity char's
+			// quantity char's of first string
 			for (int i = 0; i < strOne.length(); i++) {
 				char c = strOne.charAt(i);
 				letters[c]++;
 			}
-
+			// compare quantity char's array letters with quantity char's of second string
 			for (int i = 0; i < strTwo.length(); i++) {
 				int c = (int) strTwo.charAt(i);
 				if (letters[c]-- <= 0) {
