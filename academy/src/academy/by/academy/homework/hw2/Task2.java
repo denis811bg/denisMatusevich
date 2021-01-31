@@ -20,18 +20,35 @@ public class Task2 {
 		}
 
 		// initialising array strings and search min word
-		System.out.println("Insert n word");
+		System.out.println("Insert n word:");
 		String[] strArray = new String[n];
-		int minLength = Integer.MAX_VALUE;
-		String minWord = null;
+		int[] result = new int[n];
 		for (int i = 0; i < n; i++) {
+			int[] letters = new int[256];
 			strArray[i] = scanner.nextLine();
-			if (strArray[i].length() < minLength) {
-				minLength = strArray[i].length();
-				minWord = strArray[i];
+
+			for (int j = 0; j < strArray[i].length(); j++) {
+				letters[strArray[i].charAt(j)]++;
+			}
+
+			int count = 0;
+			for (int j = 0; j < letters.length; j++) {
+				if (letters[j] >= 1) {
+					count++;
+				}
+			}
+			result[i] = count;
+		}
+
+		int minIndex = Integer.MAX_VALUE;
+		int minValue = Integer.MAX_VALUE;
+		for (int i = 0; i < result.length; i++) {
+			if (result[i] < minValue) {
+				minIndex = i;
+				minValue = result[i];
 			}
 		}
-		System.out.println("Result: " + minWord);
+		System.out.println("Result: " + strArray[minIndex]);
 		scanner.close();
 	}
 }
