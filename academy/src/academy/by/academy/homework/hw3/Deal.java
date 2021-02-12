@@ -1,6 +1,10 @@
 package academy.by.academy.homework.hw3;
 
+import academy.by.academy.homework.hw3.PatternDate.PatternDate;
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Deal {
@@ -24,7 +28,12 @@ public class Deal {
     private Product[] products;
     private String dealDate;
     private int countProduct = 0;
-    private Date deadline;
+    public static Calendar deadLine;
+
+    static {
+        deadLine = Calendar.getInstance();
+        deadLine.add(Calendar.DAY_OF_MONTH, 10);
+    }
 
     public Person getSeller() {
         return seller;
@@ -56,14 +65,6 @@ public class Deal {
 
     public void setDealDate(String dealDate) {
         this.dealDate = dealDate;
-    }
-
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
     }
 
     public Deal(Person seller, Person buyer, String dealDate) {
