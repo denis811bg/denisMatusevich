@@ -2,9 +2,10 @@ package academy.by.academy.homework.hw3;
 
 import academy.by.academy.homework.hw3.PatternDate.PatternDate;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Deal {
@@ -26,7 +27,7 @@ public class Deal {
     private Person seller;
     private Person buyer;
     private Product[] products;
-    private String dealDate;
+    private LocalDate dealDate;
     private int countProduct = 0;
     public static Calendar deadLine;
 
@@ -59,15 +60,15 @@ public class Deal {
         this.products = products;
     }
 
-    public String getDealDate() {
+    public LocalDate getDealDate() {
         return dealDate;
     }
 
-    public void setDealDate(String dealDate) {
+    public void setDealDate(LocalDate dealDate) {
         this.dealDate = dealDate;
     }
 
-    public Deal(Person seller, Person buyer, String dealDate) {
+    public Deal(Person seller, Person buyer, LocalDate dealDate) {
         this.seller = seller;
         this.buyer = buyer;
         this.dealDate = dealDate;
@@ -75,7 +76,12 @@ public class Deal {
 
     public void checkBill() {
         double checkSum = 0.0;
-        System.out.println("Дата сдедки: " + dealDate);
+        System.out.println("Дата сдедки: ");
+        System.out.println("День: " + dealDate.getDayOfMonth());
+        System.out.println("Месяц: " + dealDate.getMonth());
+        System.out.println("Год: " + dealDate.getYear());
+        System.out.println("--------------------------------------------");
+        System.out.println("Дедлайн сделки: " + new SimpleDateFormat("dd/MM/yyyy").format(deadLine.getTime()));
         System.out.println("--------------------------------------------");
         if (products == null) {
             System.out.println("Склад пустой. Обратитесь к поставщику для закупки товара.");

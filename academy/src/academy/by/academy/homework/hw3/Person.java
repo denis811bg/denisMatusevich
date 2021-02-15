@@ -67,16 +67,16 @@ public class Person {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public boolean patternSlashDateOfBirth(String dateOfBirth){
-        if (patternDate.validateSlash(dateOfBirth)){
+    public boolean patternSlashDateOfBirth(String dateOfBirth) {
+        if (patternDate.validateSlash(dateOfBirth)) {
             return true;
         } else {
             return false;
         }
     }
 
-    public boolean patternDashDateOfBirth(String dateOfBirth){
-        if (patternDate.validateDash(dateOfBirth)){
+    public boolean patternDashDateOfBirth(String dateOfBirth) {
+        if (patternDate.validateDash(dateOfBirth)) {
             return true;
         } else {
             return false;
