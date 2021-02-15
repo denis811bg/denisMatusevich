@@ -11,6 +11,14 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Application {
+    public static final String strMenu =
+            "Добавить товар на склад (введите 1)" +
+                    "\nУдалить товар со склада (введите 2)" +
+                    "\nПровести сделку (введите 3)" +
+                    "\nВывести список товаров на складе (введите 4)" +
+                    "\nВыход (введите 0)" +
+                    "\n--------------------------------------------";
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Person personSeller;
@@ -80,17 +88,49 @@ public class Application {
             }
         }
 
-        // Task3, Task8
 //        System.out.print("Введите дату рождения покупателя: ");
 //        String dateOfBirth = scanner.nextLine();
-//        if (personBuyer.patternSlashDateOfBirth(dateOfBirth)){
+//        if (patternDate.validateSlash(dateOfBirth)){
 //            System.out.println("Дата соответствует паттерну dd/MM/yyyy.");
-//        } else if (personBuyer.patternDashDateOfBirth(dateOfBirth)){
+//        } else if (patternDate.validateDash(dateOfBirth)){
 //            System.out.println("Дата соответствует паттерну dd-MM-yyyy.");
 //        } else {
 //            System.out.println("Дата не соответствует ни одному паттерну.");
 //        }
 
-        deal.initMenu();
+        System.out.println("Меню: ");
+        System.out.println(strMenu);
+        String str = scanner.nextLine().trim();
+        while (!str.equals("0")) {
+            switch (str) {
+                case "1": {
+                    deal.initProductArray();
+                    System.out.println(strMenu);
+                    break;
+                }
+                case "2": {
+                    System.out.print("Введите наименование продукта: ");
+                    deal.deleteProduct(scanner.nextLine());
+                    System.out.println(strMenu);
+                    break;
+                }
+                case "3": {
+                    deal.checkBill();
+                    System.out.println(strMenu);
+                    break;
+                }
+                case "4": {
+                    deal.printProductArray();
+                    System.out.println(strMenu);
+                    break;
+                }
+                default: {
+                    System.out.println("Вы ввели некорректные данные!");
+                    System.out.println("--------------------------------------------");
+                    System.out.println(strMenu);
+                }
+            }
+            str = scanner.nextLine().trim();
+        }
     }
 }

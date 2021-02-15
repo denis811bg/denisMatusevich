@@ -9,13 +9,6 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Deal {
-    public final String strMenu =
-            "Добавить товар на склад (введите 1)" +
-                    "\nУдалить товар со склада (введите 2)" +
-                    "\nПровести сделку (введите 3)" +
-                    "\nВывести список товаров на складе (введите 4)" +
-                    "\nВыход (введите 0)" +
-                    "\n--------------------------------------------";
     public final String strMenuProduct =
             "Вино (введите 1)" +
                     "\nСыр (введите 2)" +
@@ -97,16 +90,17 @@ public class Deal {
                         "\nКоличество = " + products[i].getQuantity() +
                         "\nИтого = " + checkSum);
             }
-            products = null;
-            countProduct = 0;
-            System.out.println("--------------------------------------------");
+            if (checkSum > buyer.getMoney()) {
+                System.out.println("Сделка не прошла. У покупателя " + buyer.getName() + " не хватило средств.");
+                System.out.println("--------------------------------------------");
+                return;
+            } else {
+                products = null;
+                countProduct = 0;
+                System.out.println("--------------------------------------------");
+            }
         }
 
-        if (checkSum > buyer.getMoney()) {
-            System.out.println("Сделка не прошла. У покупателя " + buyer.getName() + " не хватило средств.");
-            System.out.println("--------------------------------------------");
-            return;
-        }
         System.out.println("Сумма сделки: " + checkSum);
         buyer.setMoney(buyer.getMoney() - checkSum);
         seller.setMoney(seller.getMoney() + checkSum);
@@ -130,43 +124,6 @@ public class Deal {
         Product[] tmpProduct = new Product[products.length * 2 + 1];
         System.arraycopy(products, 0, tmpProduct, 0, products.length);
         products = tmpProduct;
-    }
-
-    public void initMenu() {
-        System.out.println("Меню: ");
-        System.out.println(strMenu);
-        String str = scanner.nextLine().trim();
-        while (!str.equals("0")) {
-            switch (str) {
-                case "1": {
-                    initProductArray();
-                    System.out.println(strMenu);
-                    break;
-                }
-                case "2": {
-                    System.out.print("Введите наименование продукта: ");
-                    deleteProduct(scanner.nextLine());
-                    System.out.println(strMenu);
-                    break;
-                }
-                case "3": {
-                    checkBill();
-                    System.out.println(strMenu);
-                    break;
-                }
-                case "4": {
-                    printProductArray();
-                    System.out.println(strMenu);
-                    break;
-                }
-                default: {
-                    System.out.println("Вы ввели некорректные данные!");
-                    System.out.println("--------------------------------------------");
-                    System.out.println(strMenu);
-                }
-            }
-            str = scanner.nextLine().trim();
-        }
     }
 
     public void initProductArray() {

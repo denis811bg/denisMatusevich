@@ -3,7 +3,6 @@ package academy.by.academy.homework.hw3;
 import academy.by.academy.homework.hw3.PatternDate.PatternDate;
 
 public class Person {
-    public final PatternDate patternDate = new PatternDate();
     private String name;
     private Integer age;
     private String phone;
@@ -65,21 +64,5 @@ public class Person {
 
     public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public boolean patternSlashDateOfBirth(String dateOfBirth) {
-        if (patternDate.validateSlash(dateOfBirth)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean patternDashDateOfBirth(String dateOfBirth) {
-        if (patternDate.validateDash(dateOfBirth)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
