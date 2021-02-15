@@ -1,10 +1,7 @@
 package academy.by.academy.homework.hw3;
 
-import academy.by.academy.homework.hw3.PatternDate.PatternDate;
-
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Scanner;
 

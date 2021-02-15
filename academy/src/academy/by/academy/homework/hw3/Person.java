@@ -1,7 +1,5 @@
 package academy.by.academy.homework.hw3;
 
-import academy.by.academy.homework.hw3.PatternDate.PatternDate;
-
 public class Person {
     private String name;
     private Integer age;
