@@ -1,6 +1,5 @@
 package academy.by.academy.homework.hw3.Validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class BelarusPhoneValidator implements Validate {
@@ -8,7 +7,6 @@ public class BelarusPhoneValidator implements Validate {
 
     @Override
     public boolean validate(String strPhoneNumber) {
-        Matcher matcher = pattern.matcher(strPhoneNumber);
-        return matcher.matches();
+        return pattern.matcher(strPhoneNumber).matches();
     }
 }

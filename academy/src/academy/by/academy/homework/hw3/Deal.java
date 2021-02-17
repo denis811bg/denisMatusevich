@@ -6,13 +6,13 @@ import java.util.Calendar;
 import java.util.Scanner;
 
 public class Deal {
+    public static final Scanner scanner = new Scanner(System.in);
     public final String strMenuProduct =
             "Вино (введите 1)" +
                     "\nСыр (введите 2)" +
                     "\nАпельсин (введите 3)" +
                     "\nВыход (введите 0)" +
                     "\n--------------------------------------------";
-    public final static Scanner scanner = new Scanner(System.in);
     public final static int MIN_COUNT_ARRAY = 1;
     private Person seller;
     private Person buyer;
@@ -194,7 +194,7 @@ public class Deal {
                 }
             }
 
-            if (count == null){
+            if (count == null) {
                 System.out.println("Такого товара не существует");
                 System.out.println("--------------------------------------------");
                 return;

@@ -1,6 +1,5 @@
 package academy.by.academy.homework.hw3.PatternDate;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class PatternDate implements PatternDatable {
@@ -9,8 +8,7 @@ public class PatternDate implements PatternDatable {
 
     @Override
     public boolean validateSlash(String str) {
-        Matcher matcherSlash = patternSlash.matcher(str);
-        if (matcherSlash.matches()) {
+        if (patternSlash.matcher(str).matches()) {
             return true;
         }
         return false;
@@ -18,8 +16,7 @@ public class PatternDate implements PatternDatable {
 
     @Override
     public boolean validateDash(String str) {
-        Matcher matcherDash = patternDash.matcher(str);
-        if (matcherDash.matches()) {
+        if (patternDash.matcher(str).matches()) {
             return true;
         }
         return false;

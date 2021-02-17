@@ -11,6 +11,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
 
 public class Application {
+    public static final Scanner scanner = new Scanner(System.in);
     public static final String strMenu =
             "Добавить товар на склад (введите 1)" +
                     "\nУдалить товар со склада (введите 2)" +
@@ -20,7 +21,6 @@ public class Application {
                     "\n--------------------------------------------";
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
         Person personSeller;
         Person personBuyer;
         Deal deal;
@@ -132,7 +132,7 @@ public class Application {
             }
             str = scanner.nextLine().trim();
         }
-
         scanner.close();
+        Deal.scanner.close();
     }
 }

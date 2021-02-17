@@ -1,6 +1,5 @@
 package academy.by.academy.homework.hw3.Validator;
 
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class EmailValidator implements Validate {
@@ -8,7 +7,6 @@ public class EmailValidator implements Validate {
 
     @Override
     public boolean validate(String strEmailValidator) {
-        Matcher matcher = pattern.matcher(strEmailValidator);
-        return matcher.matches();
+        return pattern.matcher(strEmailValidator).matches();
     }
 }
