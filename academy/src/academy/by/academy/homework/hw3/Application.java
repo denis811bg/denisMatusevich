@@ -101,7 +101,7 @@ public class Application {
         System.out.println("Меню: ");
         System.out.println(strMenu);
         String str = scanner.nextLine().trim();
-        while (!str.equals("0")) {
+        while (!"0".equals(str)) {
             switch (str) {
                 case "1": {
                     deal.initProductArray();

@@ -127,7 +127,7 @@ public class Deal {
         System.out.println("Меню добавления товаров на склад:");
         System.out.println(strMenuProduct);
         String str = scanner.nextLine().trim();
-        while (!str.equals("0")) {
+        while (!"0".equals(str)) {
             switch (str) {
                 case "1": {
                     System.out.println("Введите наименование вина, стоимость, производителя, количество, тип, крепость и страну производителя: ");
@@ -182,7 +182,7 @@ public class Deal {
     }
 
     public void deleteProduct(String name) {
-        int count = 0;
+        Integer count = null;
         if (products == null) {
             System.out.println("Склад пустой. Обратитесь к поставщику для закупки товара.");
             System.out.println("--------------------------------------------");
@@ -194,8 +194,14 @@ public class Deal {
                 }
             }
 
+            if (count == null){
+                System.out.println("Такого товара не существует");
+                System.out.println("--------------------------------------------");
+                return;
+            }
+
             if (countProduct != (count + 1)) {
-                System.arraycopy(products, count + 1, products, count, countProduct - count + 1);
+                System.arraycopy(products, count + 1, products, count, countProduct - (count + 1));
             }
             products[--countProduct] = null;
             System.out.println("Товар удален.");
