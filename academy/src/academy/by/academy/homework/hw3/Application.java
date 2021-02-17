@@ -132,5 +132,7 @@ public class Application {
             }
             str = scanner.nextLine().trim();
         }
+
+        scanner.close();
     }
 }

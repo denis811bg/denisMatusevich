@@ -9,6 +9,6 @@ public class EmailValidator implements Validate {
     @Override
     public boolean validate(String strEmailValidator) {
         Matcher matcher = pattern.matcher(strEmailValidator);
-        return matcher.find();
+        return matcher.matches();
     }
 }

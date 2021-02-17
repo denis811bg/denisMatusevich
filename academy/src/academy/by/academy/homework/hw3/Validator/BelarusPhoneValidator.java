@@ -9,6 +9,6 @@ public class BelarusPhoneValidator implements Validate {
     @Override
     public boolean validate(String strPhoneNumber) {
         Matcher matcher = pattern.matcher(strPhoneNumber);
-        return matcher.find();
+        return matcher.matches();
     }
 }

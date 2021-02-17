@@ -10,7 +10,7 @@ public class PatternDate implements PatternDatable {
     @Override
     public boolean validateSlash(String str) {
         Matcher matcherSlash = patternSlash.matcher(str);
-        if (matcherSlash.find()) {
+        if (matcherSlash.matches()) {
             return true;
         }
         return false;
@@ -19,7 +19,7 @@ public class PatternDate implements PatternDatable {
     @Override
     public boolean validateDash(String str) {
         Matcher matcherDash = patternDash.matcher(str);
-        if (matcherDash.find()) {
+        if (matcherDash.matches()) {
             return true;
         }
         return false;
