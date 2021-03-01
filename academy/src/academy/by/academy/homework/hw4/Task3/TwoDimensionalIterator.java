@@ -22,9 +22,6 @@ public class TwoDimensionalIterator<T> implements Iterator {
 
     @Override
     public boolean hasNext() {
-        if (array == null) {
-            return false;
-        }
         return cursorI < array.length && cursorJ < array[cursorI].length;
     }
 
