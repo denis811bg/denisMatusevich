@@ -21,10 +21,13 @@ public class Application {
                     "\n--------------------------------------------";
 
     public static void main(String[] args) {
-        Person personSeller;
-        Person personBuyer;
+        Person personSeller = null;
+        Person personBuyer = null;
         Deal deal;
 
+        BelarusPhoneValidator belarusPhoneValidator = new BelarusPhoneValidator();
+        AmericanPhoneValidator americanPhoneValidator = new AmericanPhoneValidator();
+        EmailValidator emailValidator = new EmailValidator();
         while (true) {
             String phoneSeller, phoneBuyer;
             String mailSeller, mailBuyer;
@@ -32,7 +35,7 @@ public class Application {
                 System.out.print("Введите номер телефона продавца: ");
                 phoneSeller = scanner.nextLine();
                 System.out.println("--------------------------------------------");
-                if (new BelarusPhoneValidator().validate(phoneSeller) || new AmericanPhoneValidator().validate(phoneSeller)) {
+                if (belarusPhoneValidator.validate(phoneSeller) || americanPhoneValidator.validate(phoneSeller)) {
                     break;
                 }
             }
@@ -41,7 +44,7 @@ public class Application {
                 System.out.print("Введите e-mail продавца: ");
                 mailSeller = scanner.nextLine();
                 System.out.println("--------------------------------------------");
-                if (new EmailValidator().validate(mailSeller)) {
+                if (emailValidator.validate(mailSeller)) {
                     break;
                 }
             }
@@ -50,7 +53,7 @@ public class Application {
                 System.out.print("Введите номер телефона покупателя: ");
                 phoneBuyer = scanner.nextLine();
                 System.out.println("--------------------------------------------");
-                if (new BelarusPhoneValidator().validate(phoneBuyer) || new AmericanPhoneValidator().validate(phoneBuyer)) {
+                if (belarusPhoneValidator.validate(phoneBuyer) || americanPhoneValidator.validate(phoneBuyer)) {
                     break;
                 }
             }
@@ -59,7 +62,7 @@ public class Application {
                 System.out.print("Введите e-mail покупателя: ");
                 mailBuyer = scanner.nextLine();
                 System.out.println("--------------------------------------------");
-                if (new EmailValidator().validate(mailBuyer)) {
+                if (emailValidator.validate(mailBuyer)) {
                     break;
                 }
             }

@@ -8,17 +8,11 @@ public class PatternDate implements PatternDatable {
 
     @Override
     public boolean validateSlash(String str) {
-        if (patternSlash.matcher(str).matches()) {
-            return true;
-        }
-        return false;
+        return patternSlash.matcher(str).matches();
     }
 
     @Override
     public boolean validateDash(String str) {
-        if (patternDash.matcher(str).matches()) {
-            return true;
-        }
-        return false;
+        return patternDash.matcher(str).matches();
     }
 }

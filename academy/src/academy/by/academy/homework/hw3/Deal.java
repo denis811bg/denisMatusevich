@@ -1,11 +1,16 @@
 package academy.by.academy.homework.hw3;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Scanner;
 
 public class Deal {
+    public static final String PATHNAME = "src/academy/by/academy/homework/hw3/printFile";
     public static final Scanner scanner = new Scanner(System.in);
     public final String strMenuProduct =
             "Вино (введите 1)" +
@@ -65,45 +70,86 @@ public class Deal {
     }
 
     public void checkBill() {
-        double checkSum = 0.0;
-        System.out.println("Дата сдедки: ");
-        System.out.println("День: " + dealDate.getDayOfMonth());
-        System.out.println("Месяц: " + dealDate.getMonth());
-        System.out.println("Год: " + dealDate.getYear());
-        System.out.println("--------------------------------------------");
-        System.out.println("Дедлайн сделки: " + new SimpleDateFormat("dd/MM/yyyy").format(deadLine.getTime()));
-        System.out.println("--------------------------------------------");
-        if (products == null) {
-            System.out.println("Склад пустой. Обратитесь к поставщику для закупки товара.");
+        File file = new File(PATHNAME);
+        if (!file.exists()) {
+            file.mkdirs();
+        }
+
+        try (BufferedWriter writerCheckBill = new BufferedWriter(new FileWriter(new File(file, dealDate + ".txt")))) {
+            double checkSum = 0.0;
+            System.out.println("Дата сделки: ");
+            writerCheckBill.write("Дата сделки: ");
+            writerCheckBill.newLine();
+            System.out.println("День: " + dealDate.getDayOfMonth());
+            writerCheckBill.write("День: " + dealDate.getDayOfMonth());
+            writerCheckBill.newLine();
+            System.out.println("Месяц: " + dealDate.getMonth());
+            writerCheckBill.write("Месяц: " + dealDate.getMonth());
+            writerCheckBill.newLine();
+            System.out.println("Год: " + dealDate.getYear());
+            writerCheckBill.write("Год: " + dealDate.getYear());
+            writerCheckBill.newLine();
             System.out.println("--------------------------------------------");
-            return;
-        } else {
-            for (int i = 0; i < countProduct; i++) {
-                checkSum += products[i].calcFinalPrice() * products[i].getQuantity();
-                System.out.println("Наименование товара - " + products[i].getNameProduct() +
-                        "\nЦена - " + products[i].getPrice() +
-                        "\nСкидка - " + (100 - products[i].discount() * 100) + "%" +
-                        "\nЦена со скидкой - " + products[i].calcFinalPrice() +
-                        "\nКоличество = " + products[i].getQuantity() +
-                        "\nИтого = " + checkSum);
-            }
-            if (checkSum > buyer.getMoney()) {
-                System.out.println("Сделка не прошла. У покупателя " + buyer.getName() + " не хватило средств.");
+            writerCheckBill.write("--------------------------------------------");
+            writerCheckBill.newLine();
+            System.out.println("Дедлайн сделки: " + new SimpleDateFormat("dd/MM/yyyy").format(deadLine.getTime()));
+            writerCheckBill.write("Дедлайн сделки: " + new SimpleDateFormat("dd/MM/yyyy").format(deadLine.getTime()));
+            writerCheckBill.newLine();
+            System.out.println("--------------------------------------------");
+            writerCheckBill.write("--------------------------------------------");
+            writerCheckBill.newLine();
+            if (products == null) {
+                System.out.println("Склад пустой. Обратитесь к поставщику для закупки товара.");
                 System.out.println("--------------------------------------------");
                 return;
             } else {
-                products = null;
-                countProduct = 0;
-                System.out.println("--------------------------------------------");
+                for (int i = 0; i < countProduct; i++) {
+                    checkSum += products[i].calcFinalPrice() * products[i].getQuantity();
+                    System.out.println("Наименование товара - " + products[i].getNameProduct() +
+                            "\nЦена - " + products[i].getPrice() +
+                            "\nСкидка - " + (100 - products[i].discount() * 100) + "%" +
+                            "\nЦена со скидкой - " + products[i].calcFinalPrice() +
+                            "\nКоличество = " + products[i].getQuantity() +
+                            "\nИтого = " + checkSum);
+                    writerCheckBill.write("Наименование товара - " + products[i].getNameProduct());
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("Цена - " + products[i].getPrice());
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("Скидка - " + (100 - products[i].discount() * 100) + "%");
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("Цена со скидкой - " + products[i].calcFinalPrice());
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("Количество = " + products[i].getQuantity());
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("Итого = " + checkSum);
+                    writerCheckBill.newLine();
+                    writerCheckBill.write("--------------------------------------------");
+                    writerCheckBill.newLine();
+                }
+                if (checkSum > buyer.getMoney()) {
+                    System.out.println("Сделка не прошла. У покупателя " + buyer.getName() + " не хватило средств.");
+                    writerCheckBill.write("Сделка не прошла. У покупателя " + buyer.getName() + " не хватило средств.");
+                    writerCheckBill.newLine();
+                    System.out.println("--------------------------------------------");
+                    return;
+                } else {
+                    products = null;
+                    countProduct = 0;
+                    System.out.println("--------------------------------------------");
+                }
             }
-        }
 
-        System.out.println("Сумма сделки: " + checkSum);
-        buyer.setMoney(buyer.getMoney() - checkSum);
-        seller.setMoney(seller.getMoney() + checkSum);
-        System.out.println("Кэш покупателя " + buyer.getName() + ": " + buyer.getMoney() + "\n" +
-                "Кэш продавца " + seller.getName() + ": " + seller.getMoney());
-        System.out.println("--------------------------------------------");
+            System.out.println("Сумма сделки: " + checkSum);
+            writerCheckBill.write("Сумма сделки: " + checkSum);
+            writerCheckBill.newLine();
+            buyer.setMoney(buyer.getMoney() - checkSum);
+            seller.setMoney(seller.getMoney() + checkSum);
+            System.out.println("Кэш покупателя " + buyer.getName() + ": " + buyer.getMoney() + "\n" +
+                    "Кэш продавца " + seller.getName() + ": " + seller.getMoney());
+            System.out.println("--------------------------------------------");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void addProduct(Product product) {

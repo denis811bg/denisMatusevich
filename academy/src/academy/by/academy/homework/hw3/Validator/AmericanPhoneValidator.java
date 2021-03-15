@@ -7,6 +7,6 @@ public class AmericanPhoneValidator implements Validate {
 
     @Override
     public boolean validate(String strPhoneNumber) {
-        return pattern.matcher(strPhoneNumber).matches();
+        return pattern.matcher(strPhoneNumber).find();
     }
 }
