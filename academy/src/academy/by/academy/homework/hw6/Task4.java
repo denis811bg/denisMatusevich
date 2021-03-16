@@ -27,47 +27,23 @@ public class Task4 {
 
         String inputLine;
         StringBuilder text = new StringBuilder();
-        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(PATHNAME_RESOURCE, FILENAME_RESOURCE)))) {
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(new File(PATHNAME_RESOURCE, FILENAME_RESOURCE)));
+             BufferedWriter bufferedWriterResult = new BufferedWriter(new FileWriter(new File(PATHNAME, FILENAME)))) {
             while ((inputLine = bufferedReader.readLine()) != null) {
                 text.append(inputLine);
             }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        BufferedWriter bufferedWriterResult = null;
-        try {
-            bufferedWriterResult = new BufferedWriter(new FileWriter(new File(PATHNAME, FILENAME)));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        for (int i = 0; i < 100; i++) {
-            File fileOutput = new File(PATHNAME, (i + 1) + ".txt");
-
-            try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileOutput))) {
-                bufferedWriter.write(text.substring(0, random.nextInt(text.length() + 1)));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-            if (bufferedWriterResult != null) {
-                try {
-                    bufferedWriterResult.write(fileOutput.getName() + " - " + fileOutput.length() + " bytes\n");
-                    bufferedWriterResult.flush();
+            for (int i = 0; i < 100; i++) {
+                File fileOutput = new File(PATHNAME, (i + 1) + ".txt");
+                try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(fileOutput))) {
+                    bufferedWriter.write(text.substring(0, random.nextInt(text.length() + 1)));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-            }
-        }
-
-        try {
-            if (bufferedWriterResult != null) {
-                bufferedWriterResult.close();
+                bufferedWriterResult.write(fileOutput.getName() + " - " + fileOutput.length() + " bytes");
+                bufferedWriterResult.newLine();
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }
