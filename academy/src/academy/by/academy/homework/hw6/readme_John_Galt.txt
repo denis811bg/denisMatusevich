@@ -1,1 +1,1 @@
-Распечатка чека сделки в файл лежит в homework/hw3/Deal.java в методе public void checkBill().
+Распечатка чека сделки в файл лежит в homework/hw3/Deal.java в методе public void printCheckBill().
